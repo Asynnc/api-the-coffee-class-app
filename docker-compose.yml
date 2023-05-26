@@ -1,0 +1,22 @@
+version: "3.5"
+services:
+  app-waiter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: appWaiter-api
+    working_dir: /usr/src/app
+    volumes:
+      - .:/usr/src/app
+    env_file:
+      - ./.env
+    ports:
+      - 3001:3001
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - gateway
+networks:
+  gateway:
+    name: gateway
+    driver: bridge

@@ -1,0 +1,47 @@
+{
+  "name": "the-coffee-class-api",
+  "version": "2.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "build": "tsc",
+    "dev": "tsnd --inspect --transpile-only --respawn --ignore-watch node_modules src/app/core/shared/http/server.ts",
+    "start": "yarn build && node dist/core/shared/http/server.js"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.14",
+    "@types/jsonwebtoken": "^9.0.1",
+    "@types/multer": "^1.4.7",
+    "@types/node": "^18.15.11",
+    "@types/nodemailer": "^6.4.7",
+    "@types/pdfmake": "^0.2.2",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "eslint": "^8.29.0",
+    "express-async-errors": "^3.1.1",
+    "nodemon": "^2.0.20",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.9.3"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1368.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "cuid": "^2.1.8",
+    "dd-trace": "^3.19.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-rate-limit": "^6.7.0",
+    "jsonwebtoken": "^9.0.0",
+    "mime": "^3.0.0",
+    "mongoose": "^6.7.5",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.1",
+    "pdfmake": "^0.2.7",
+    "socket.io": "^4.6.1"
+  }
+}
