@@ -1,17 +1,17 @@
 version: "3.5"
 services:
-  app-waiter:
+  api-the-coffee-class:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: appWaiter-api
+    container_name: TheCoffeeClass-Api
     working_dir: /usr/src/app
     volumes:
       - .:/usr/src/app
     env_file:
       - ./.env
     ports:
-      - 3001:3001
+      - 3008:3008
     extra_hosts:
       - "host.docker.internal:host-gateway"
     networks:

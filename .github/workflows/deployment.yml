@@ -1,0 +1,59 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [master, develop]
+  pull_request:
+    branches: [master, homolog, develop]
+jobs:
+  test-ci:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x, 20.x]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm run test --if-present
+
+  deploy-test:
+    needs: test-ci
+    if: github.ref == 'refs/heads/develop'
+    runs-on: ubuntu-latest
+    concurrency: deploy-to-test
+    environment: test
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x, 20.x]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: docker build -t api-the-coffee-class .
+      - run: echo "✅ Deploy"
+
+  deploy-production:
+    needs: test-ci
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    concurrency: deploy-to-test
+    environment: test
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x, 20.x]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: docker build -t api-the-coffee-class .
+      - run: echo "✅ Deploy"
