@@ -1,17 +1,22 @@
-FROM node
-
-ADD . /src
+FROM node:16-slim as BUILDER
+LABEL maintainer="Antonio Silva"
 
 WORKDIR /usr/src/app
 
-RUN rm -rf node_modules yarn.lock package-lock.json
-
-COPY ./package*.json ./
-
+# Install app dependencies
+COPY package*.json ./
 RUN npm install
 
-COPY . .
+COPY src ./src
 
-EXPOSE 3001
+FROM node:16-alpine
 
-CMD npm run dev
+ARG NODE_ENV
+
+WORKDIR /usr/src/app
+
+COPY --from=BUILDER /usr/src/app/ ./
+
+EXPOSE 3008
+
+CMD [ "npm", "start" ]
