@@ -9,6 +9,7 @@ import { LogRequests } from './middlewares/logRequests';
 import './middlewares/tracer';
 import { routes } from './routes';
 import { limiter } from './middlewares/limiter';
+import helmet from 'helmet';
 
 mongoose.connect(`${process.env.MongoDB_URL_Cloud}`)
   .then(() => console.log('✅ MongoDB Connected!'))
@@ -16,6 +17,7 @@ mongoose.connect(`${process.env.MongoDB_URL_Cloud}`)
 
 const app = express();
 app.use(limiter);
+app.use(helmet());
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 app.use(cors());
