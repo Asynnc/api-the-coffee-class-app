@@ -1,7 +1,6 @@
 import { Entity } from '../../../../core/entities/entity';
 import { UniqueEntityID } from '../../../../core/entities/unique-entity-id';
-import { Ingredients } from './ingredients';
-
+import { Ingredients } from './ingredient';
 
 interface ProductProps {
   name: string;

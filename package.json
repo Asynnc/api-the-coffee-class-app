@@ -4,9 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "build": "tsc",
     "lint": "eslint src --ext .ts",
     "lint:fix": "eslint src --ext .ts --fix",
-    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "dev": "tsnd --inspect --transpile-only --respawn --ignore-watch node_modules src/app/core/shared/http/server.ts",
     "start": "yarn build && node dist/core/shared/http/server.js"
   },
@@ -26,9 +28,12 @@
     "express-async-errors": "^3.1.1",
     "nodemon": "^2.0.20",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^4.9.3"
+    "typescript": "^4.9.3",
+    "vite-tsconfig-paths": "^4.2.0",
+    "vitest": "^0.31.1"
   },
   "dependencies": {
+    "@faker-js/faker": "^8.0.2",
     "aws-sdk": "^2.1368.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
