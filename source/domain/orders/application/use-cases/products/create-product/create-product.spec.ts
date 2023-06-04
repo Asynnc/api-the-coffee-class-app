@@ -24,7 +24,7 @@ describe('Create Product', () => {
       },
       {
         name: 'ingredient-name-2',
-        icon: 'ingredient-icon-3',
+        icon: 'ingredient-icon-2',
       }
       ]
     });

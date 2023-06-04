@@ -2,7 +2,7 @@ import { Entity } from '../../../../core/entities/entity';
 import { UniqueEntityID } from '../../../../core/entities/unique-entity-id';
 import { IngredientsProps } from './ingredient';
 
-interface ProductProps {
+export interface ProductProps {
   name: string;
   description: string;
   imagePath: string;
