@@ -1,5 +1,5 @@
 import { CategoriesRepository } from '../../source/domain/orders/application/repositories/category-repository';
-import { Category } from '../../source/domain/orders/enterprises/entities/category';
+import { Category } from '../../source/domain/orders/enterprise/entities/category';
 
 export class InMemoryCategoriesRepository implements CategoriesRepository {
   public items: Array<Category> = [];

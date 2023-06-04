@@ -1,6 +1,6 @@
-import { CreateCategoryRequest, CreateCategoryResponse } from '../../dtos/create-category-dto';
-import { CategoriesRepository } from '../../repositories/category-repository';
-import { Category } from '../../../enterprises/entities/category';
+import { CreateCategoryRequest, CreateCategoryResponse } from '../../../dtos/create-category-dto';
+import { CategoriesRepository } from '../../../repositories/category-repository';
+import { Category } from '../../../../enterprise/entities/category';
 
 export class CreateCategoryUseCase {
   constructor(private categoriesRepository: CategoriesRepository) { }

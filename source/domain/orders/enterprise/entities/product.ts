@@ -1,13 +1,14 @@
 import { Entity } from '../../../../core/entities/entity';
 import { UniqueEntityID } from '../../../../core/entities/unique-entity-id';
-import { Ingredients } from './ingredient';
+import { IngredientsProps } from './ingredient';
 
 interface ProductProps {
   name: string;
   description: string;
   imagePath: string;
   price: number;
-  ingredients: Array<Ingredients>
+  ingredients: Array<IngredientsProps>
+  category: string
 }
 
 export class Product extends Entity<ProductProps> {
@@ -32,6 +33,9 @@ export class Product extends Entity<ProductProps> {
     return this.props.ingredients;
   }
 
+  get category() {
+    return this.props.category;
+  }
 
   static create(props: ProductProps, id?: UniqueEntityID) {
     const product = new Product(props, id);

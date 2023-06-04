@@ -1,8 +1,8 @@
-import { InMemoryCategoriesRepository } from '../../../../../../test/repositories/in-memory-categories-repository';
+import { InMemoryCategoriesRepository } from '../../../../../../../test/repositories/in-memory-categories-repository';
 import { CreateCategoryUseCase } from './create-category';
 
 
-describe('Create Question', () => {
+describe('Create Category', () => {
   let inMemoryQuestionsRepository: InMemoryCategoriesRepository;
   let sut: CreateCategoryUseCase;
 
@@ -11,7 +11,7 @@ describe('Create Question', () => {
     sut = new CreateCategoryUseCase(inMemoryQuestionsRepository);
   });
 
-  it('should be able to create a question', async () => {
+  it('should be able to create a category', async () => {
     const { category } = await sut.execute({
       name: 'new-category',
       icon: '🆕'

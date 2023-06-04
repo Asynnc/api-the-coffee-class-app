@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import { Category, CategoryProps } from '../../source/domain/orders/enterprises/entities/category';
+import { Category, CategoryProps } from '../../source/domain/orders/enterprise/entities/category';
 import { UniqueEntityID } from '../../source/core/entities/unique-entity-id';
 
 export function MakeCategory(
