@@ -4,16 +4,17 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "build": "tsc",
     "lint": "eslint src --ext .ts",
     "lint:fix": "eslint src --ext .ts --fix",
-    "build": "tsc",
-    "dev": "tsnd --inspect --transpile-only --respawn --ignore-watch node_modules src/app/core/shared/http/server.ts",
-    "start": "yarn build && node dist/core/shared/http/server.js"
+    "start": "yarn build && node dist/core/shared/http/server.js",
+    "dev": "tsnd --inspect --transpile-only --respawn --ignore-watch node_modules src/app/core/shared/http/server.ts"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.14",
+    "@types/ioredis": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.1",
     "@types/mime": "^3.0.1",
     "@types/multer": "^1.4.7",
@@ -39,6 +40,7 @@
     "express-rate-limit": "^6.7.0",
     "git-commit-msg-linter": "^5.0.4",
     "helmet": "^7.0.0",
+    "ioredis": "^5.3.2",
     "jsonwebtoken": "^9.0.0",
     "mime": "^3.0.0",
     "mongoose": "^6.7.5",

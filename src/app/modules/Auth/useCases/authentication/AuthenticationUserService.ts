@@ -4,6 +4,7 @@ import AuthConfig from '../../../../config/auth';
 import { AppError } from '../../../../core/shared/http/errors';
 import { User } from '../../../../core/shared/infra/database/mongodb/models/User';
 import { IAuthRequest, IAuthResponse } from './AuthenticationUserDTO';
+import { setRedis } from '../../../../core/shared/infra/database/redis/client';
 
 export class AuthenticationUserService {
 
@@ -29,6 +30,9 @@ export class AuthenticationUserService {
     });
 
     delete user.password;
+
+    await setRedis(`@user-${user.email}:token`, token);
+    await setRedis(`@user-${user.email}`, JSON.stringify(user, null, 2));
 
     return {
       user,
