@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc",
     "test": "vitest run --coverage",
+    "test:ui": "vitest --ui",
     "test:watch": "vitest",
     "lint": "eslint src --ext .ts",
     "lint:fix": "eslint src --ext .ts --fix",
@@ -25,6 +26,7 @@
     "@typescript-eslint/eslint-plugin": "^5.45.0",
     "@typescript-eslint/parser": "^5.45.0",
     "@vitest/coverage-c8": "^0.31.4",
+    "@vitest/ui": "^0.31.4",
     "eslint": "^8.29.0",
     "express-async-errors": "^3.1.1",
     "nodemon": "^2.0.20",

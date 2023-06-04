@@ -7,13 +7,8 @@ export class CreateProductUseCase {
 
   async execute({ name, description, imagePath, price, ingredients, category }: CreateProductRequest): Promise<CreateProductResponse> {
 
-    // Parsed in Controller not here!
-    // const ingredientsParsed = JSON.parse(ingredients);
-
     const product = Product.create({ name, description, imagePath, price, ingredients, category });
     await this.productsRepository.create(product);
-
-    console.log(product);
 
     return { product };
   }
