@@ -5,10 +5,10 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "lint": "eslint src --ext .ts",
-    "lint:fix": "eslint src --ext .ts --fix",
     "test": "vitest run",
     "test:watch": "vitest",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
     "dev": "tsnd --inspect --transpile-only --respawn --ignore-watch node_modules src/app/core/shared/http/server.ts",
     "start": "yarn build && node dist/core/shared/http/server.js"
   },
