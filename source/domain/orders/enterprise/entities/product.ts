@@ -38,6 +38,15 @@ export class Product extends Entity<ProductProps> {
   }
 
   static create(props: ProductProps, id?: UniqueEntityID) {
+
+    const propertiesToCheck = ['name', 'description', 'imagePath', 'price', 'ingredients', 'category'];
+
+    for (const property of propertiesToCheck) {
+      if (!(property in props)) {
+        throw new Error(`Missing param: ${property}`);
+      }
+    }
+
     const product = new Product(props, id);
     return product;
   }

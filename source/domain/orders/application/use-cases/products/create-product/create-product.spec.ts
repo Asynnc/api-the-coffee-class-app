@@ -21,7 +21,12 @@ describe('Create Product', () => {
       ingredients: [{
         name: 'ingredient-name',
         icon: 'ingredient-icon',
-      }]
+      },
+      {
+        name: 'ingredient-name-2',
+        icon: 'ingredient-icon-3',
+      }
+      ]
     });
 
     expect(product.id).toBeTruthy();

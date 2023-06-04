@@ -6,6 +6,11 @@ export default defineConfig({
     tsConfigPaths()
   ],
   test: {
-    globals: true
+    globals: true,
+    coverage: {
+      provider: 'c8',
+      reporter: ['text', 'json', 'html'],
+      reportsDirectory: './coverage'
+    }
   }
 });
