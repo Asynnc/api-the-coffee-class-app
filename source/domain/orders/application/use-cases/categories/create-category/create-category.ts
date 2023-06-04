@@ -1,4 +1,4 @@
-import { CreateCategoryRequest, CreateCategoryResponse } from '../../../dtos/create-category-dto';
+import { CreateCategoryRequest, CreateCategoryResponse } from '../../../dtos/category/create-category-dto';
 import { CategoriesRepository } from '../../../repositories/category-repository';
 import { Category } from '../../../../enterprise/entities/category';
 

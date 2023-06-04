@@ -1,4 +1,4 @@
-import { CreateProductRequest, CreateProductResponse } from '../../../dtos/create-product-dto';
+import { CreateProductRequest, CreateProductResponse } from '../../../dtos/product/create-product-dto';
 import { Product } from '../../../../enterprise/entities/product';
 import { ProductsRepository } from '../../../repositories/product-repository';
 

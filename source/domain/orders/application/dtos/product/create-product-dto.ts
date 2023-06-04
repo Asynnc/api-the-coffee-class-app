@@ -1,5 +1,5 @@
-import { IngredientsProps } from '../../enterprise/entities/ingredient';
-import { Product } from '../../enterprise/entities/product';
+import { IngredientsProps } from '../../../enterprise/entities/ingredient';
+import { Product } from '../../../enterprise/entities/product';
 
 export interface CreateProductRequest {
   name: string;

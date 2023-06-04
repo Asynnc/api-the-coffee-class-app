@@ -1,4 +1,4 @@
-import { Category } from '../../enterprise/entities/category';
+import { Category } from '../../../enterprise/entities/category';
 
 export interface CreateCategoryRequest {
   icon: string,

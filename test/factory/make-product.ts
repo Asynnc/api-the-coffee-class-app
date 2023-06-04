@@ -6,7 +6,7 @@ export function MakeProduct(
   override: Partial<ProductProps> = {},
   id?: UniqueEntityID
 ) {
-  const category = Product.create({
+  const product = Product.create({
     name: faker.commerce.product(),
     description: faker.commerce.productDescription(),
     imagePath: faker.system.directoryPath(),
@@ -20,5 +20,5 @@ export function MakeProduct(
     ...override
   }, id);
 
-  return category;
+  return product;
 }
