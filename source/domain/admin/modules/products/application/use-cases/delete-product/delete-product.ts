@@ -1,4 +1,4 @@
-import { DeleteProductUseCaseRequest, DeleteProductUseCaseResponse } from '../../dtos/delete-product';
+import { DeleteProductUseCaseRequest, DeleteProductUseCaseResponse } from '../../dtos/delete-product-dto';
 import { ProductsRepository } from '../../repositories/product-repository';
 
 export class DeleteProductUseCase {

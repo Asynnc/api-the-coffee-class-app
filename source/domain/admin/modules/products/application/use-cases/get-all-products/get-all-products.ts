@@ -1,4 +1,4 @@
-import { GetAllProductsResponse } from '../../dtos/get-all-products';
+import { GetAllProductsResponse } from '../../dtos/get-all-products-dto';
 import { ProductsRepository } from '../../repositories/product-repository';
 
 export class GetAllProductsUseCase {

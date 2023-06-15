@@ -22,8 +22,14 @@ export class InMemoryProductsRepository implements ProductsRepository {
     return product;
   }
 
-  async delete(question: Product) {
-    const itemIdex = this.items.findIndex((item) => item.id === question.id);
+  async delete(product: Product) {
+    const itemIdex = this.items.findIndex((item) => item.id === product.id);
     this.items.splice(itemIdex, 1);
   }
+
+  async update(product: Product) {
+    const itemIdex = this.items.findIndex((item) => item.id === product.id);
+    this.items[itemIdex] = product;
+  }
+
 }
