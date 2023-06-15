@@ -24,13 +24,13 @@ describe('Delete Question', () => {
     expect(inMemoryProductsRepository.items).toHaveLength(0);
   });
 
-  it('should not be able to delete a question if not sxists', async () => {
+  it('should not be able to delete a question if not exists', async () => {
     const newProduct = MakeProduct({}, new UniqueEntityID('product-1'));
     await inMemoryProductsRepository.create(newProduct);
 
     expect(() => {
       return sut.execute({
-        id: 'product-2'
+        id: null
       });
     }).rejects.toBeInstanceOf(Error);
   });
