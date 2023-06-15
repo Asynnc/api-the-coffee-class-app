@@ -1,6 +1,7 @@
 
 import { Entity } from '../../../../../../core/entities/entity';
 import { UniqueEntityID } from '../../../../../../core/entities/unique-entity-id';
+import { Optional } from '../../../../../../core/types/optional';
 import { IngredientsProps } from './ingredient';
 
 export interface ProductProps {
@@ -10,6 +11,8 @@ export interface ProductProps {
   price: number;
   ingredients: Array<IngredientsProps>
   category: string
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export class Product extends Entity<ProductProps> {
@@ -38,8 +41,13 @@ export class Product extends Entity<ProductProps> {
     return this.props.category;
   }
 
-  static create(props: ProductProps, id?: UniqueEntityID) {
-    const product = new Product(props, id);
+  static create(props: Optional<ProductProps, 'createdAt' | 'updatedAt'>, id?: UniqueEntityID) {
+    const product = new Product({
+      ...props,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }, id);
+
     return product;
   }
 }
