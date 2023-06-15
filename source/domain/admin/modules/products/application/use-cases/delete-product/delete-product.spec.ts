@@ -7,7 +7,7 @@ import { DeleteProductUseCase } from './delete-product';
 let inMemoryProductsRepository: InMemoryProductsRepository;
 let sut: DeleteProductUseCase;
 
-describe('Delete Question', () => {
+describe('Admin - Delete Question', () => {
   beforeEach(() => {
     inMemoryProductsRepository = new InMemoryProductsRepository();
     sut = new DeleteProductUseCase(inMemoryProductsRepository);
