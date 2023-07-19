@@ -16,7 +16,11 @@ mongoose.connect(`${process.env.MongoDB_URL_Cloud}`)
   .catch((err) => console.error(err));
 
 const app = express();
-app.use(limiter);
+
+if (process.env.ENVIRONMENT !== 'TEST') {
+  app.use(limiter);
+}
+
 app.use(helmet());
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));

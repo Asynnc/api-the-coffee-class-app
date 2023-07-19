@@ -9,10 +9,12 @@ export class AuthenticationUserService {
 
   public async execute({ email, password }: IAuthRequest): Promise<IAuthResponse> {
 
-    const user = await User.findOne({ email: email.toLowerCase() });
+    const user = await User.findOne({ email: email.toLowerCase() })
+      .populate('orders.order')
+      .limit(5);
 
     if (!user) {
-      throw new AppError('Email does not exists.', 400);
+      throw new AppError('Email does not exists.', 404);
     }
 
     const isPasswordValid = await compare(password, user.password);
