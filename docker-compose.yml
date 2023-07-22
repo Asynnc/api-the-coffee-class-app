@@ -1,10 +1,10 @@
-version: "3.5"
+version: "3.7"
 services:
   the-coffee-class:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: the-coffee-class-api
+    container_name: ${APP_NAME}-api
     working_dir: /usr/src/app
     volumes:
       - .:/usr/src/app
@@ -15,8 +15,25 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     networks:
-      - gateway
+      - ${APP_NAME}
+  postgres:
+    image: postgres
+    container_name: ${APP_NAME}-postgres
+    environment:
+      POSTGRES_USER: ${TYPEORM_USERNAME}
+      POSTGRES_PASSWORD: ${TYPEORM_PASSWORD}
+      POSTGRES_DB: ${APP_NAME}
+    ports:
+      - ${TYPEORM_PORT}:5432
+    extra_hosts:
+      - "postgres:host-gateway"
+    volumes:
+      - postgres-db-data:/var/lib/postgres
+    networks:
+      - ${APP_NAME}
 networks:
-  gateway:
-    name: gateway
+  the-coffee-class:
+    name: ${APP_NAME}-network
     driver: bridge
+volumes:
+  postgres-db-data:
