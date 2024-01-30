@@ -8,4 +8,8 @@ export class InMemoryCategoriesRepository implements CategoriesRepository {
   async create(category: Category) {
     this.items.push(category);
   }
+
+  async getAllCategories(): Promise<Category[]> {
+    return this.items;
+  }
 }

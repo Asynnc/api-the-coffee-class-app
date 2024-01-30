@@ -1,0 +1,188 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id        String  @id @default(uuid())
+  name      String
+  username  String
+  email     String
+  password  String
+  avatar    String
+  document  String
+  is_active Boolean
+
+  create_at        DateTime           @default(now())
+  updated_at       DateTime           @default(now())
+  feedbacks        Feedbacks[]
+  addresses        Addresses[]
+  UsersPermissions UsersPermissions[]
+  UserRoles        UserRoles[]
+
+  @@map("users")
+}
+
+model Addresses {
+  id      String @id @default(uuid())
+  street  String
+  suite   String
+  city    String
+  zipcode String
+  lat     String
+  lng     String
+  user_id String
+  user    Users  @relation(fields: [user_id], references: [id])
+
+  create_at  DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  @@map("addresses")
+}
+
+model Categories {
+  id   String @id @default(uuid())
+  name String
+  icon String
+
+  create_at  DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  @@map("categories")
+}
+
+model CategoriesRestaurant {
+  id   String @id @default(uuid())
+  name String
+  icon String
+
+  create_at  DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  @@map("categories_restaurant")
+}
+
+model Products {
+  id          String @id @default(uuid())
+  name        String
+  description String
+  imagePath   String
+  price       Int
+
+  create_at     DateTime        @default(now())
+  updated_at    DateTime        @default(now())
+  OrderProducts OrderProducts[]
+
+  @@map("products")
+}
+
+model Orders {
+  id     String @id @default(uuid())
+  table  String
+  status String
+
+  create_at     DateTime        @default(now())
+  updated_at    DateTime        @default(now())
+  OrderProducts OrderProducts[]
+
+  @@map("orders")
+}
+
+model OrderProducts {
+  id         String   @id @default(uuid())
+  order      Orders   @relation(fields: [order_id], references: [id])
+  order_id   String
+  product    Products @relation(fields: [product_id], references: [id])
+  product_id String
+  quantity   Int
+
+  create_at  DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  @@map("order_products")
+}
+
+model Feedbacks {
+  id      String @id @default(uuid())
+  user_id String
+  user    Users  @relation(fields: [user_id], references: [id])
+
+  type         String
+  comment      String
+  satisfaction String
+  screenshot   String
+
+  create_at  DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  @@map("feedbacks")
+}
+
+model Roles {
+  id          String @id @default(uuid())
+  name        String
+  description String
+
+  create_at        DateTime           @default(now())
+  updated_at       DateTime           @default(now())
+  PermissionsRoles PermissionsRoles[]
+  UserRoles        UserRoles[]
+
+  @@map("roles")
+}
+
+model Permissions {
+  id          String @id @default(uuid())
+  name        String
+  description String
+
+  create_at        DateTime           @default(now())
+  updated_at       DateTime           @default(now())
+  PermissionsRoles PermissionsRoles[]
+  UsersPermissions UsersPermissions[]
+
+  @@map("permissions")
+}
+
+model PermissionsRoles {
+  roles         Roles       @relation(fields: [role_id], references: [id])
+  role_id       String
+  permissions   Permissions @relation(fields: [permission_id], references: [id])
+  permission_id String
+  created_at    DateTime    @default(now())
+  updated_at    DateTime    @default(now())
+
+  @@id([permission_id, role_id])
+  @@map("permissions_roles")
+}
+
+model UsersPermissions {
+  user_id       String
+  user          Users       @relation(fields: [user_id], references: [id])
+  permission    Permissions @relation(fields: [permission_id], references: [id])
+  permission_id String
+  created_at    DateTime    @default(now())
+  updated_at    DateTime    @default(now())
+
+  @@id([permission_id, user_id])
+  @@map("users_permissions")
+}
+
+model UserRoles {
+  user       Users    @relation(fields: [user_id], references: [id])
+  user_id    String
+  role       Roles    @relation(fields: [role_id], references: [id])
+  role_id    String
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  @@id([role_id, user_id])
+  @@map("users_roles")
+}

@@ -1,4 +1,4 @@
-FROM node:16-slim as BUILDER
+FROM node:20-alpine as BUILDER
 LABEL maintainer="Antonio Silva"
 
 WORKDIR /usr/src/app
@@ -10,7 +10,7 @@ RUN npm install
 
 COPY src ./src
 
-FROM node:16-alpine
+FROM node:20-alpine
 
 ARG NODE_ENV
 

@@ -9,7 +9,7 @@ import { usersRouter } from '../../../../modules/User/routes/users.routes';
 const routes = Router();
 
 routes.use('/users', usersRouter);
-routes.use('/auth', authRouter);
+routes.use('/sessions', authRouter);
 routes.use('/orders', ordersRouter);
 routes.use('/products', productsRouter);
 routes.use('/categories', categoryRouter);

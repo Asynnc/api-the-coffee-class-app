@@ -8,3 +8,9 @@ export interface CreateCategoryRequest {
 export interface CreateCategoryResponse {
   category: Category
 }
+
+export interface GetAllCategoriesRequest { }
+
+export interface GetAllCategoriesResponse {
+  categories: Array<Category>
+}
